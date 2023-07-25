@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Hello World test cicd pipeline66677");
+		System.out.println("Hello World test cicd pipeline8888");
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
