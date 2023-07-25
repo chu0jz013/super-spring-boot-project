@@ -6,5 +6,10 @@ pipeline{
                 git 'https://github.com/chu0jz013/super-spring-boot-project.git'
             }
         }
+        stage('buid'){
+            steps {
+                sh 'mvn spring-boot:start'
+            }
+        }
     }
 }
