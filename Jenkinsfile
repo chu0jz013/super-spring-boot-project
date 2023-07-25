@@ -1,12 +1,12 @@
 pipeline{
     agent any 
     stages {
-        stage('git'){
+        stage('Git clone'){
             steps{
                 git 'https://github.com/chu0jz013/super-spring-boot-project.git'
             }
         }
-        stage('buid with maven'){
+        stage('Buid with Maven'){
             steps {
                 sh 'mvn --version'
                 sh 'mvn clean package'
