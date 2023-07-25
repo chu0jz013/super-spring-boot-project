@@ -1,9 +1,5 @@
 pipeline{
     agent any 
-
-    tools{
-        maven 'my-maven'
-    }
     stages {
         stage('git'){
             steps{
