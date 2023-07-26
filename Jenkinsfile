@@ -1,11 +1,13 @@
 pipeline{
     agent any 
+
     tools {
         maven "my-maven"
     }
-    // environment {
-    //     DOCKERHUB_CREDENTIALS=credentials('dockerhub-credential')
-    // }
+
+    environment {
+        DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+    }
 
     stages {
 
@@ -25,14 +27,14 @@ pipeline{
             }
         }
         
-        // stage('Package with Docker'){
-        //     steps {
-        //         unstash 'app'
-        //         sh 'ls -la'
-        //         sh 'ls -la target'
-        //         sh 'docker build -t haikn013/springboot-image:1.1 .'
-        //     }
-        // }
+        stage('Package with Docker'){
+            steps {
+                unstash 'app'
+                sh 'ls -la'
+                sh 'ls -la target'
+                sh 'docker build -t haikn013/springboot-image:1.1 .'
+            }
+        }
 
         // stage('Push image to DockerHub'){
         //     steps{
