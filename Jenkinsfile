@@ -46,7 +46,6 @@ pipeline{
                 unstash 'app'
                 sh 'ls -la'
                 sh 'ls -la target'
-                sh 'service docker start'
                 sh 'docker build -t haikn013/springboot-image:1.1 .'
             }
         }
