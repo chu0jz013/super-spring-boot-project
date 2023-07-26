@@ -7,7 +7,7 @@ pipeline{
     stages {
         stage('Scan & Review with SonarQube') {
             steps {
-                withSonarQubeEnv(installationName: 'my-sonar'){
+                withSonarQubeEnv(installationName: 'my-sonar-server'){
                     sh 'mvn sonar:sonar '
                 }
             }
