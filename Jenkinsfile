@@ -1,9 +1,22 @@
 pipeline{
     agent any 
+    tools {
+        maven "my-maven"
+    }
+
     stages {
-        stage('Git clone'){
+        stage('build'){
             steps{
-                git 'https://github.com/chu0jz013/super-spring-boot-project.git'
+                sh "mvn --version"
+                sh "mvn clean package"
+            }
+        }
+        post {
+            success {
+                echo   "SUCCESSFULL !!"
+            }
+            failure {
+                echo  "FAILED !!"
             }
         }
     }
