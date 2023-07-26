@@ -3,7 +3,7 @@ pipeline{
 
     tools {
         maven "my-maven"
-        // dockerTool "my-docker"
+        dockerTool "my-docker"
     }
 
     environment {
@@ -19,13 +19,13 @@ pipeline{
         //     }
         // }
 
-        // stage('Scan & Review with SonarQube') {
-        //     steps {
-        //         withSonarQubeEnv(installationName: 'my-sonar-server'){
-        //             sh 'mvn sonar:sonar '
-        //         }
-        //     }
-        // }
+        stage('Scan & Review with SonarQube') {
+            steps {
+                withSonarQubeEnv(installationName: 'my-sonar-server'){
+                    sh 'mvn sonar:sonar '
+                }
+            }
+        }
 
         stage('Build with Maven'){
             steps{
