@@ -4,18 +4,18 @@ pipeline{
         maven "my-maven"
     }
     environment {
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+        DOCKERHUB_CREDENTIALS=credentials('dockerhub-credential')
     }
 
     stages {
 
-        // stage('Scan & Review with SonarQube') {
-        //     steps {
-        //         withSonarQubeEnv(installationName: 'my-sonar-server'){
-        //             sh 'mvn sonar:sonar '
-        //         }
-        //     }
-        // }
+        stage('Scan & Review with SonarQube') {
+            steps {
+                withSonarQubeEnv(installationName: 'my-sonar-server'){
+                    sh 'mvn sonar:sonar '
+                }
+            }
+        }
 
         stage('Build with Maven'){
             steps{
@@ -25,24 +25,24 @@ pipeline{
             }
         }
         
-        stage('Package with Docker'){
-            steps {
-                unstash 'app'
-                sh 'ls -la'
-                sh 'ls -la target'
-                sh 'docker build -t haikn013/springboot-image:1.1 .'
-            }
-        }
+        // stage('Package with Docker'){
+        //     steps {
+        //         unstash 'app'
+        //         sh 'ls -la'
+        //         sh 'ls -la target'
+        //         sh 'docker build -t haikn013/springboot-image:1.1 .'
+        //     }
+        // }
 
-        stage('Push image to DockerHub'){
-            steps{
-                sh 'echo $HOVATEN'
-                echo 'Start pushing.. with credential'
-                sh 'echo $DOCKERHUB_CREDENTIALS'
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker push haikn013/springboot-image:1.1 '
-            }
-        }
+        // stage('Push image to DockerHub'){
+        //     steps{
+        //         sh 'echo $HOVATEN'
+        //         echo 'Start pushing.. with credential'
+        //         sh 'echo $DOCKERHUB_CREDENTIALS'
+        //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        //         sh 'docker push haikn013/springboot-image:1.1 '
+        //     }
+        // }
 
         // stage('Deploy to QA Server'){
         //     steps{
