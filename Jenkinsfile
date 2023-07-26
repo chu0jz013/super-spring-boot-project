@@ -3,6 +3,7 @@ pipeline{
 
     tools {
         maven "my-maven"
+        docker "my-docker"
     }
 
     environment {
@@ -10,6 +11,13 @@ pipeline{
     }
 
     stages {
+
+
+        // stage('Git clone repo'){
+        //     steps{
+        //         git ''
+        //     }
+        // }
 
         stage('Scan & Review with SonarQube') {
             steps {
