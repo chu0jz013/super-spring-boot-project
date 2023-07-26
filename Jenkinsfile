@@ -27,17 +27,17 @@ pipeline{
             }
         }
 
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-
         stage('Build with Maven'){
             steps{
                 sh "mvn --version"
                 sh "mvn clean package"
                 stash includes : 'target/*.jar', name: 'app'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
         
