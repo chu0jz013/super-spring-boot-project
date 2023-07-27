@@ -6,9 +6,9 @@ pipeline{
         // dockerTool "my-docker"
     }
 
-    environment {
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
-    }
+    // environment {
+    //     DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+    // }
 
     stages {
 
@@ -19,13 +19,13 @@ pipeline{
         //     }
         // }
 
-        stage('Scan & Review with SonarQube') {
-            steps {
-                withSonarQubeEnv(installationName: 'my-sonar-server'){
-                    sh 'mvn sonar:sonar '
-                }
-            }
-        }
+        // stage('Scan & Review with SonarQube') {
+        //     steps {
+        //         withSonarQubeEnv(installationName: 'my-sonar-server'){
+        //             sh 'mvn sonar:sonar '
+        //         }
+        //     }
+        // }
 
         stage('Build with Maven'){
             steps{
