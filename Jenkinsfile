@@ -19,13 +19,13 @@ pipeline{
         //     }
         // }
 
-        // stage('Scan & Review with SonarQube') {
-        //     steps {
-        //         withSonarQubeEnv(installationName: 'my-sonar-server'){
-        //             sh 'mvn sonar:sonar '
-        //         }
-        //     }
-        // }
+        stage('Scan & Review with SonarQube') {
+            steps {
+                withSonarQubeEnv(installationName: 'my-sonar-server'){
+                    sh 'mvn sonar:sonar '
+                }
+            }
+        }
 
         stage('Build with Maven'){
             steps{
@@ -46,9 +46,8 @@ pipeline{
                 unstash 'app'
                 sh 'ls -la'
                 sh 'ls -la target'
-                script{
-                    sh 'docker build -t haikn013/springboot-image:1.1 .'
-                }
+                sh 'docker run hello-world'
+                sh 'docker build -t haikn013/springboot-image:1.1 .'
             }
         }
 
