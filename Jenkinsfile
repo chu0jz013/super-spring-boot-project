@@ -11,21 +11,14 @@ pipeline{
     // }
 
     stages {
-
-
-        // stage('Git clone repo'){
-        //     steps{
-        //         git ''
+        
+        // stage('Scan & Review with SonarQube') {
+        //     steps {
+        //         withSonarQubeEnv(installationName: 'my-sonar-server'){
+        //             sh 'mvn sonar:sonar '
+        //         }
         //     }
         // }
-
-        stage('Scan & Review with SonarQube') {
-            steps {
-                withSonarQubeEnv(installationName: 'my-sonar-server'){
-                    sh 'mvn sonar:sonar '
-                }
-            }
-        }
 
         stage('Build with Maven'){
             steps{
@@ -46,8 +39,8 @@ pipeline{
                 unstash 'app'
                 sh 'ls -la'
                 sh 'ls -la target'
-                sh 'gpasswd -a $USER docker'
-                sh 'dockerd'
+                sh 'systemctl daemon-reload'
+                sh 'systemctl restart docker'
                 sh 'docker run hello-world'
                 sh 'docker build -t haikn013/springboot-image:1.1 .'
             }
